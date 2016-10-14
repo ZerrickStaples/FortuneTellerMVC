@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="FortuneMVCModelStoreContainer" CdmEntityContainer="FortuneMVCEntities">
+    <EntitySetMapping Name="BirthMonths">
+      <EntityTypeMapping TypeName="FortuneMVCModel.BirthMonth">
+        <MappingFragment StoreEntitySet="BirthMonth">
+          <ScalarProperty Name="BirthMonthID" ColumnName="BirthMonthID" />
+          <ScalarProperty Name="BirthMonth1" ColumnName="BirthMonth" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Customers">
+      <EntityTypeMapping TypeName="FortuneMVCModel.Customer">
+        <MappingFragment StoreEntitySet="Customer">
+          <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
+          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+          <ScalarProperty Name="LastName" ColumnName="LastName" />
+          <ScalarProperty Name="Age" ColumnName="Age" />
+          <ScalarProperty Name="FavoriteColorID" ColumnName="FavoriteColorID" />
+          <ScalarProperty Name="BirthMonthID" ColumnName="BirthMonthID" />
+          <ScalarProperty Name="NumberofSiblings" ColumnName="NumberofSiblings" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="FavoriteColors">
+      <EntityTypeMapping TypeName="FortuneMVCModel.FavoriteColor">
+        <MappingFragment StoreEntitySet="FavoriteColor">
+          <ScalarProperty Name="FavoriteColorID" ColumnName="FavoriteColorID" />
+          <ScalarProperty Name="FavoriteColor1" ColumnName="FavoriteColor" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

@@ -1,0 +1,26 @@
+﻿@model FortuneTellerMVC.Models.Customer
+
+
+@{
+    ViewBag.Title = "Fortune";
+}
+
+<h2>Your Fortune</h2>
+
+<div>
+
+
+    <h4>Fortune</h4>
+    <hr />
+   
+    <p>
+        <span class="nameStyle"> @Html.DisplayFor(model => model.FirstName)  @Html.DisplayFor(model => model.LastName)</span> will retire in @ViewBag.retire years with
+        $@ViewBag.savings in the bank, a vacation home in  @ViewBag.vacationLocation  and @ViewBag.vehicle.
+    </p>           
+        
+   
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.CustomerID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

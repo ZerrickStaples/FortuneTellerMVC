@@ -1,0 +1,70 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="FortuneMVCModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="BirthMonth">
+    <Key>
+      <PropertyRef Name="BirthMonthID" />
+    </Key>
+    <Property Name="BirthMonthID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="BirthMonth1" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Customers" Relationship="Self.FK_Customer_Customer" FromRole="BirthMonth" ToRole="Customer" />
+  </EntityType>
+  <EntityType Name="Customer">
+    <Key>
+      <PropertyRef Name="CustomerID" />
+    </Key>
+    <Property Name="CustomerID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Age" Type="Int32" Nullable="false" />
+    <Property Name="FavoriteColorID" Type="Int32" Nullable="false" />
+    <Property Name="BirthMonthID" Type="Int32" Nullable="false" />
+    <Property Name="NumberofSiblings" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="BirthMonth" Relationship="Self.FK_Customer_Customer" FromRole="Customer" ToRole="BirthMonth" />
+    <NavigationProperty Name="FavoriteColor" Relationship="Self.FK_Customer_FavoriteColor" FromRole="Customer" ToRole="FavoriteColor" />
+  </EntityType>
+  <EntityType Name="FavoriteColor">
+    <Key>
+      <PropertyRef Name="FavoriteColorID" />
+    </Key>
+    <Property Name="FavoriteColorID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="FavoriteColor1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Customers" Relationship="Self.FK_Customer_FavoriteColor" FromRole="FavoriteColor" ToRole="Customer" />
+  </EntityType>
+  <Association Name="FK_Customer_Customer">
+    <End Role="BirthMonth" Type="Self.BirthMonth" Multiplicity="1" />
+    <End Role="Customer" Type="Self.Customer" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="BirthMonth">
+        <PropertyRef Name="BirthMonthID" />
+      </Principal>
+      <Dependent Role="Customer">
+        <PropertyRef Name="BirthMonthID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Customer_FavoriteColor">
+    <End Role="FavoriteColor" Type="Self.FavoriteColor" Multiplicity="1" />
+    <End Role="Customer" Type="Self.Customer" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="FavoriteColor">
+        <PropertyRef Name="FavoriteColorID" />
+      </Principal>
+      <Dependent Role="Customer">
+        <PropertyRef Name="FavoriteColorID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="FortuneMVCEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="BirthMonths" EntityType="Self.BirthMonth" />
+    <EntitySet Name="Customers" EntityType="Self.Customer" />
+    <EntitySet Name="FavoriteColors" EntityType="Self.FavoriteColor" />
+    <AssociationSet Name="FK_Customer_Customer" Association="Self.FK_Customer_Customer">
+      <End Role="BirthMonth" EntitySet="BirthMonths" />
+      <End Role="Customer" EntitySet="Customers" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Customer_FavoriteColor" Association="Self.FK_Customer_FavoriteColor">
+      <End Role="FavoriteColor" EntitySet="FavoriteColors" />
+      <End Role="Customer" EntitySet="Customers" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
